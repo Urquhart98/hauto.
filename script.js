@@ -46,3 +46,12 @@ if (!localStorage.getItem('hautoIntroShown')) {
   // Already shown → skip animation
   showSiteImmediately();
 }
+
+<script>
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+
+hamburger.addEventListener('click', () => {
+  mobileMenu.classList.toggle('active');
+});
+</script>
