@@ -1,0 +1,129 @@
+/* =========================
+   ARCHIA FONT (TITLE ONLY)
+========================= */
+@font-face {
+  font-family: 'Archia';
+  src: url('archia-regular-webfont.woff2') format('woff2'),
+       url('archia-regular-webfont.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Example usage for your title */
+.logo, .logo-text {
+  font-family: 'Archia', sans-serif;
+}
+
+/* =========================
+   GLOBAL
+========================= */
+:root {
+  --bg: #0b0e13;
+  --bg-alt: #141a26;
+  --accent: #5eead4;
+  --text: #e5e7eb;
+  --muted: #9aa4b2;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 28px 70px;
+  background: var(--bg);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-family: 'Archia', sans-serif;
+  font-size: 1.7rem;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  color: var(--text);
+}
+
+.logo span {
+  color: var(--accent);
+}
+
+nav a {
+  margin-left: 35px;
+  text-decoration: none;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+nav a:hover {
+  color: var(--accent);
+}
+
+/* =========================
+   ARTICLE SECTION
+========================= */
+.article-section {
+  max-width: 900px;
+  margin: 80px auto 80px auto;
+  padding: 0 20px;
+}
+
+.article-section h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+.article-section h2 {
+  font-size: 2rem;
+  margin-top: 35px;
+  margin-bottom: 15px;
+  color: var(--accent);
+}
+
+.article-section p {
+  font-size: 1.1rem;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
+/* =========================
+   LINKS
+========================= */
+.article-section a {
+  color: #fff;             /* links white */
+  text-decoration: none;    /* remove underline */
+}
+
+.article-section a:hover {
+  color: var(--accent);     /* accent color on hover */
+  text-decoration: underline;
+}
+
+/* =========================
+   FOOTER
+========================= */
+footer {
+  padding: 45px 20px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--muted);
+  background: var(--bg-alt);
+}
