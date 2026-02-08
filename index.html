@@ -5,79 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>hauto. | Smart Home Automation</title>
 
-  <!-- Body font -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
+  <!-- CSS -->
   <link rel="stylesheet" href="style.css">
-
-  <style>
-    /* =========================
-       MOBILE HAMBURGER MENU
-    ========================= */
-    @media (max-width: 768px) {
-      /* Hide desktop nav */
-      header nav { display: none; }
-
-      /* Hamburger button */
-      .hamburger {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        width: 28px;
-        height: 20px;
-        cursor: pointer;
-        position: absolute;
-        top: 28px;
-        right: 30px;
-      }
-
-      .hamburger span {
-        display: block;
-        height: 3px;
-        background: #e5e7eb; /* match text color */
-        border-radius: 2px;
-      }
-
-      /* Mobile menu dropdown */
-      .mobile-menu {
-        display: none; /* hidden by default */
-        position: absolute;
-        top: 70px;
-        right: 20px;
-        background: #141a26; /* matches your --bg-alt */
-        border-radius: 10px;
-        flex-direction: column;
-        width: 180px;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-        z-index: 999;
-      }
-
-      .mobile-menu a {
-        padding: 15px 20px;
-        color: #e5e7eb;
-        text-decoration: none;
-        display: block;
-        font-weight: 500;
-      }
-
-      .mobile-menu a:hover {
-        background: #0b0e13;
-        color: #5eead4; /* accent */
-      }
-
-      /* Show menu when active */
-      .mobile-menu.active {
-        display: flex;
-      }
-    }
-
-    @media (min-width: 769px) {
-      .hamburger { display: none; }
-      .mobile-menu { display: none; }
-    }
-  </style>
 </head>
 <body>
 
@@ -89,17 +23,17 @@
   <!-- MAIN SITE -->
   <div id="site">
 
+    <!-- NAVBAR -->
     <header class="navbar">
       <div class="logo">hauto<span>.</span></div>
-      <nav>
+      <nav class="nav-links">
         <a href="#features">Features</a>
         <a href="#services">Services</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
       </nav>
-
       <!-- Mobile Hamburger -->
-      <div class="hamburger" id="hamburger">
+      <div id="hamburger">
         <span></span>
         <span></span>
         <span></span>
@@ -107,7 +41,7 @@
     </header>
 
     <!-- Mobile Dropdown Menu -->
-    <div class="mobile-menu" id="mobileMenu">
+    <div id="mobileMenu" class="mobile-menu">
       <a href="#features">Features</a>
       <a href="#services">Services</a>
       <a href="#about">About</a>
@@ -124,48 +58,10 @@
         Home automation and professional non-notifiable electrical work —
         lighting, sockets, upgrades, and maintenance.
       </p>
-
-      <!-- Hero Button -->
       <a href="contact.html"><button>Contact Us</button></a>
     </section>
 
-    <!-- FEATURES GRID -->
-    <section id="features" class="features">
-      <h2>What We Offer</h2>
-      <p class="features-message">Click on the card you would like to learn more information.</p>
-      <div class="feature-grid">
-        <a href="smart-controls.html" class="feature-card-link">
-          <div class="feature-card" style="background-image: url('smart-controls.jpeg');">
-            <div class="overlay">
-              <h3>Smart Controls</h3>
-            </div>
-          </div>
-        </a>
-        <a href="smart-lighting.html" class="feature-card-link">
-          <div class="feature-card" style="background-image: url('smart-lighting.jpeg');">
-            <div class="overlay">
-              <h3>Smart Lighting</h3>
-            </div>
-          </div>
-        </a>
-        <a href="sound-system.html" class="feature-card-link">
-          <div class="feature-card" style="background-image: url('sound-system.jpeg');">
-            <div class="overlay">
-              <h3>Sound Systems</h3>
-            </div>
-          </div>
-        </a>
-        <a href="electrical.html" class="feature-card-link">
-          <div class="feature-card" style="background-image: url('electrical-works.jpeg');">
-            <div class="overlay">
-              <h3>Non-Notifiable Electrical Works</h3>
-            </div>
-          </div>
-        </a>
-      </div>
-    </section>
-
-    <!-- SERVICES -->
+	 <!-- SERVICES -->
     <section id="services" class="section">
       <h2>Our Services</h2>
       <div class="cards">
@@ -187,6 +83,74 @@
         </div>
       </div>
     </section>
+	
+    <!-- FEATURES GRID -->
+    <section id="features" class="features">
+      <p></p>
+      <p class="features-message"></p>
+      <div class="feature-grid">
+        <a href="smart-controls.html" class="feature-card-link">
+          <div class="feature-card" style="background-image: url('smart-controls.jpeg');">
+            <div class="overlay"><h3>Smart Controls</h3></div>
+          </div>
+        </a>
+        <a href="smart-lighting.html" class="feature-card-link">
+          <div class="feature-card" style="background-image: url('smart-lighting.jpeg');">
+            <div class="overlay"><h3>Smart Lighting</h3></div>
+          </div>
+        </a>
+        <a href="sound-system.html" class="feature-card-link">
+          <div class="feature-card" style="background-image: url('sound-system.jpeg');">
+            <div class="overlay"><h3>Sound Systems</h3></div>
+          </div>
+        </a>
+        <a href="electrical.html" class="feature-card-link">
+          <div class="feature-card" style="background-image: url('electrical-works.jpeg');">
+            <div class="overlay"><h3>Non-Notifiable Electrical Works</h3></div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- FEATURED PROPERTY CAROUSEL -->
+    <section id="featured-property">
+      <h2>Featured Properties</h2>
+      <div class="featured-card-wrapper">
+        <div class="featured-card">
+          <img src="" alt="">
+          <div class="featured-content">
+            <h3></h3>
+            <p></p>
+            <p class="cost"></p>
+          </div>
+        </div>
+        <div class="arrow left-arrow arrow">&#8249;</div>
+        <div class="arrow right-arrow arrow">&#8250;</div>
+      </div>
+    </section>
+
+	
+	<!-- BRANDS -->
+    <section id="brands">
+  <h2>Brands we Work With</h2>
+  <div class="brands-window">
+    <div class="brands-track">
+      <img src="logos/home-assistant.png" alt="Home Assistant">
+      <img src="logos/philips-hue.png" alt="Philips Hue">
+      <img src="logos/ikea.png" alt="IKEA">
+      <img src="logos/alexa.png" alt="Alexa">
+      <img src="logos/apple-homekit.png" alt="Apple HomeKit">
+      <img src="logos/google-home.png" alt="Google Home">
+      <!-- Duplicate logos for seamless loop -->
+      <img src="logos/home-assistant.png" alt="Home Assistant">
+      <img src="logos/philips-hue.png" alt="Philips Hue">
+      <img src="logos/ikea.png" alt="IKEA">
+      <img src="logos/alexa.png" alt="Alexa">
+      <img src="logos/apple-homekit.png" alt="Apple HomeKit">
+      <img src="logos/google-home.png" alt="Google Home">
+    </div>
+  </div>
+</section>
 
     <!-- ABOUT -->
     <section id="about" class="section dark">
@@ -204,6 +168,7 @@
       <a href="contact.html"><button class="secondary">Contact hauto.</button></a>
     </section>
 
+
     <!-- FOOTER -->
     <footer>
       <p>© 2026 hauto. All rights reserved.</p>
@@ -211,14 +176,8 @@
 
   </div>
 
-  <script>
-    const hamburger = document.getElementById('hamburger');
-    const mobileMenu = document.getElementById('mobileMenu');
-
-    hamburger.addEventListener('click', () => {
-      mobileMenu.classList.toggle('active');
-    });
-  </script>
+  <!-- JS -->
+  <script src="script.js"></script>
 
 </body>
 </html>

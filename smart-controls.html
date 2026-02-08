@@ -15,16 +15,33 @@
 </head>
 <body>
 
+  <!-- HEADER -->
   <header class="navbar">
-  <div class="logo">hauto<span>.</span></div>
-  <nav>
-    <a href="index.html">Home</a>
+    <div class="logo">hauto<span>.</span></div>
+
+    <!-- Desktop nav -->
+    <nav>
+      <a href="index.html#features">Features</a>
+      <a href="index.html#services">Services</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+
+    <!-- Hamburger button for mobile -->
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </header>
+
+  <!-- Mobile dropdown menu -->
+  <div class="mobile-menu" id="mobileMenu">
     <a href="index.html#features">Features</a>
     <a href="index.html#services">Services</a>
     <a href="index.html#about">About</a>
     <a href="index.html#contact">Contact</a>
-  </nav>
-</header>
+  </div>
 
   <!-- ARTICLE CONTENT -->
   <section class="article-section">
@@ -61,6 +78,16 @@
   <footer>
     <p>© 2026 hauto. All rights reserved.</p>
   </footer>
+
+  <!-- HAMBURGER SCRIPT -->
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    hamburger.addEventListener('click', () => {
+      mobileMenu.classList.toggle('active');
+    });
+  </script>
 
 </body>
 </html>
