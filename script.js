@@ -71,18 +71,6 @@ const properties = [
     title: 'Small Semi-Detached Upgrade',
     desc: 'For this charming semi-detached home, we installed a complete smart lighting system, both indoors and outdoors, along with a sleek touch-screen control unit for effortless management. Every light can be customized with ease, combining convenience, energy efficiency, and modern style.',
     cost: '£1,200'
-  },
-  {
-    img: 'property3.jpeg',
-    title: 'Country Villa Upgrade',
-    desc: 'At this countryside villa, we installed advanced smart lighting, heating, and entertainment systems. The centralized control panel enables full management of the house at your fingertips. A comprehensive security setup was also integrated for peace of mind.',
-    cost: '£7,800'
-  },
-  {
-    img: 'property4.jpeg',
-    title: 'Beachfront Mansion',
-    desc: 'This beachfront mansion was completely modernized with smart lighting, heating, advanced control panels for full house management, and a cutting-edge security system. The upgrades allow the homeowners to control everything from their phone.',
-    cost: '£9,300'
   }
 ];
 
