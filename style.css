@@ -149,10 +149,12 @@ button {
   border-radius: 8px;
   cursor: pointer;
 }
+
 button.secondary {
   background: transparent;
   color: var(--accent);
   border: 2px solid var(--accent);
+  margin-top: 25px; /* Added spacing between text and button */
 }
 
 /* =========================
@@ -236,8 +238,13 @@ button.secondary {
   flex-direction: column;
   align-items: center;
   text-align: left;
-  padding: 80px 70px;
+  padding: 80px 80px ;
   background: var(--bg-alt);
+  
+}
+
+#featured-property h2 {
+  margin-bottom: 60px; /* Increase this value to add more space */
 }
 
 .featured-card-wrapper {
@@ -419,4 +426,34 @@ footer { padding: 45px; text-align: center; font-size: 0.9rem; color: var(--mute
   #mobileMenu.active {
     display: flex;
   }
+}
+
+/* Footer layout */
+footer {
+  padding: 45px 70px;
+  color: var(--muted);
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Social icons */
+.footer-social {
+  display: flex;
+  gap: 18px;
+}
+
+.footer-social .social-icon {
+  width: 28px;
+  height: 28px;
+  filter: brightness(0) invert(1); /* makes icons light to match text */
+  transition: filter 0.2s ease;
+}
+
+.footer-social a:hover .social-icon {
+  filter: brightness(0) invert(0.7); /* slight effect on hover */
 }

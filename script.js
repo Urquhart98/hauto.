@@ -61,7 +61,7 @@ mobileLinks.forEach(link => {
 // =========================
 const properties = [
   {
-    img: 'property1.jpeg',
+    img: 'property1.png',
     title: 'Luxury House Upgrade',
     desc: 'For this stunning property, we delivered a full smart home transformation, installing intelligent lighting, advanced heating controls, and centralized panels for effortless management of lighting, climate, and multimedia. We enhanced security with smart locks, cameras, and motion sensors, ensuring peace of mind.',
     cost: '£5,500'
