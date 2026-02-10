@@ -30,7 +30,7 @@ a {
 }
 
 /* =========================
-   LOGO FONT
+   LOGO FONT & ANIMATION
 ========================= */
 @font-face {
   font-family: 'Archia';
@@ -46,6 +46,20 @@ a {
   font-size: 1.7rem;
   font-weight: 700;
   letter-spacing: 0.10em;
+  display: inline-block;
+
+  /* Fade in from Left */
+  opacity: 0;
+  transform: translateX(-20px);
+  animation: logoFadeIn 0.6s ease forwards;
+  animation-delay: 0.5s;
+}
+
+@keyframes logoFadeIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .logo span {
@@ -61,63 +75,95 @@ a {
   align-items: center;
   padding: 28px 70px;
   position: relative;
-  z-index: 100;
+  z-index: 1000; /* Increased to stay above content */
 }
 
 .navbar nav a {
   margin-left: 35px;
   font-weight: 400;
   color: var(--muted);
+  display: inline-block;
+
+  /* Initial state: Hidden and shifted right */
+  opacity: 0;
+  transform: translateX(20px);
+  animation: navFadeIn 0.6s ease forwards;
 }
 
+/* REVERSED STAGGERED DELAY (Matches Homepage Logic) */
+.navbar nav a:nth-child(1) { animation-delay: 0.8s; } 
+.navbar nav a:nth-child(2) { animation-delay: 0.7s; } 
+.navbar nav a:nth-child(3) { animation-delay: 0.6s; } 
+
+@keyframes navFadeIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Neon Glow Effect on Hover */
 .navbar nav a:hover {
-  color: var(--text);
+  color: var(--accent);
+  text-shadow: 0 0 8px rgba(94, 234, 212, 0.6), 0 0 20px rgba(94, 234, 212, 0.4);
 }
 
 /* =========================
-   MOBILE HAMBURGER MENU
+   MOBILE HAMBURGER - CLEAN LOOK (Match style.css)
 ========================= */
-.hamburger {
+#hamburger {
   display: none;
   flex-direction: column;
-  justify-content: space-between;
-  width: 28px;
-  height: 20px;
+  gap: 5px;
   cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.hamburger span {
+#hamburger span {
+  width: 25px;
   height: 3px;
   background: var(--text);
   border-radius: 2px;
+  transition: all 0.3s ease;
 }
 
-/* Mobile dropdown menu */
-.mobile-menu {
+/* =========================
+   MOBILE MENU DROPDOWN (Match style.css)
+========================= */
+#mobileMenu {
   display: none;
-  position: absolute;
-  top: 75px;
-  right: 20px;
-  background: var(--bg-alt);
-  border-radius: 10px;
-  width: 180px;
+  position: fixed;
+  top: 70px;
+  left: 0;
+  width: 100%;
+  background: rgba(20, 26, 38, 0.9); /* style.css style blur */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 30px;
   flex-direction: column;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+  gap: 20px;
   z-index: 999;
+  border-bottom: 1px solid var(--accent);
+  text-align: center;
 }
 
-.mobile-menu a {
-  padding: 15px 20px;
+#mobileMenu a {
+  text-decoration: none;
   color: var(--text);
-  font-weight: 500;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  padding: 10px 0;
 }
 
-.mobile-menu a:hover {
-  background: var(--bg);
+#mobileMenu a:hover {
   color: var(--accent);
 }
 
-.mobile-menu.active {
+#mobileMenu.active {
   display: flex;
 }
 
@@ -152,13 +198,13 @@ a {
 }
 
 .article-section a {
-  color: var(--text);       /* default white */
+  color: var(--text);
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .article-section a:hover {
-  color: var(--accent);     /* turquoise on hover */
+  color: var(--accent);
 }
 
 /* =========================
@@ -175,8 +221,12 @@ footer {
    MOBILE RESPONSIVE
 ========================= */
 @media (max-width: 768px) {
+  .logo, .navbar nav a {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
 
-  /* Navbar adjustments */
   .navbar {
     padding: 20px 30px;
   }
@@ -185,11 +235,10 @@ footer {
     display: none;
   }
 
-  .hamburger {
+  #hamburger {
     display: flex;
   }
 
-  /* Article section */
   .article-section {
     padding: 0 30px;
   }
@@ -206,7 +255,6 @@ footer {
     font-size: 1rem;
   }
 
-  /* Footer */
   footer {
     padding: 35px 20px;
     font-size: 0.85rem;
@@ -217,11 +265,11 @@ footer {
    DESKTOP FIX
 ========================= */
 @media (min-width: 769px) {
-  .mobile-menu {
+  #mobileMenu {
     display: none !important;
   }
 
-  .hamburger {
+  #hamburger {
     display: none;
   }
 }
