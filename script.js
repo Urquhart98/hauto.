@@ -6,13 +6,17 @@ const mobileMenu = document.getElementById('mobileMenu');
 
 if (hamburger && mobileMenu) {
   hamburger.addEventListener('click', () => {
-    mobileMenu.classList.toggle('active');
+    const isActive = mobileMenu.classList.toggle('active');
+    // Sync accessibility state
+    hamburger.setAttribute('aria-expanded', isActive);
   });
 
+  // Close menu when clicking a link (important for single-page nav)
   const mobileLinks = mobileMenu.querySelectorAll('a');
   mobileLinks.forEach(link => {
     link.addEventListener('click', () => {
       mobileMenu.classList.remove('active');
+      hamburger.setAttribute('aria-expanded', 'false');
     });
   });
 }
@@ -45,7 +49,7 @@ function showProperty(index) {
 
   const prop = properties[index];
 
-  // Reset Animation (Force restart)
+  // Reset Animation (Force restart by reflow)
   featuredCard.classList.remove('swoop-in');
   void featuredCard.offsetWidth; 
 
@@ -63,7 +67,7 @@ function showProperty(index) {
   if (descPara) descPara.textContent = prop.desc;
   if (costPara) costPara.textContent = `Project Cost: ${prop.cost}`;
 
-  // Re-trigger the Swoop
+  // Re-trigger the Swoop animation
   featuredCard.classList.add('swoop-in');
 }
 
@@ -78,7 +82,7 @@ if (leftArrow && rightArrow) {
   });
 }
 
-// Initialize the first view immediately
+// Initialize the first property view
 if (featuredCard) {
   showProperty(currentIndex);
 }

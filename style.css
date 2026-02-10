@@ -52,6 +52,11 @@ body {
   backdrop-filter: blur(8px);
 }
 
+/* HIDE mobile menu globally so it doesn't break desktop alignment */
+.mobile-menu {
+  display: none;
+}
+
 .nav-links {
   display: flex;
   align-items: center;
@@ -376,6 +381,29 @@ button.secondary {
   justify-content: center;
 }
 
+
+/* BOTTOM LED STRIP (Flows Backward) */
+#featured-property::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  z-index: 10;
+  background: linear-gradient(90deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+  background-size: 400% 100%;
+  /* Added 'reverse' to make it flow the opposite way */
+  animation: ledFlow 15s linear infinite reverse;
+  box-shadow: 0 -4px 15px rgba(255, 255, 255, 0.1), 0 -10px 30px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes ledFlow {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 400% 0%; }
+}
+
+
 /* =========================
    ARROWS (STATIONARY & CLEAN)
 ========================= */
@@ -411,49 +439,65 @@ button.secondary {
 .right-arrow { right: 2%; }
 
 /* =========================
-   BRANDS & FOOTER
+   BRANDS - SEAMLESS LOOP FIX
 ========================= */
 #brands { 
-  padding: 60px 20px; 
+  padding: 100px 0; 
   text-align: center; 
   position: relative;
+  overflow: hidden;
+  background: var(--bg);
 }
 
-#brands::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  z-index: 10;
-  background: linear-gradient(90deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
-  background-size: 400% 100%;
-  animation: ledFlow 15s linear infinite reverse;
-  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1), 0 10px 30px rgba(0, 0, 0, 0.5);
+/* SPACE BETWEEN TEXT AND LOGOS */
+#brands h2 {
+  margin-bottom: 60px;
 }
 
-.brands-window { overflow: hidden; width: 70%; margin: 0 auto; }
+.brands-window { 
+  overflow: hidden; 
+  width: 80%;           
+  max-width: 1100px;    
+  margin: 0 auto;
+  position: relative;
+  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+}
+
 .brands-track {
   display: flex;
-  gap: 30px;
+  gap: 100px;           
   width: max-content;
   align-items: center;
-  animation: scrollLeft 25s linear infinite;
+  animation: scrollLeft 25s linear infinite; 
 }
 
 .brands-track img { 
-  height: 80px;        
-  width: 130px;        
-  object-fit: cover;
-  border-radius: 12px; 
+  height: 60px;        
+  width: auto;        
+  object-fit: contain;
+  flex-shrink: 0;
   transition: transform 0.3s ease;
-  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.brands-track img:hover { transform: scale(1.05); }
+.brands-track img:hover { 
+  transform: scale(1.1); 
+}
 
-@keyframes scrollLeft { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+@keyframes scrollLeft { 
+  0% { transform: translateX(0); } 
+  100% { transform: translateX(-50%); } 
+}
+
+/* MOBILE LOGO SIZING */
+@media (max-width: 768px) {
+  #brands { padding: 60px 0; }
+  #brands h2 { margin-bottom: 90px; }
+  .brands-window { width: 90%; }
+  .brands-track img { height: 40px; }
+  .brands-track { gap: 50px; }
+}
+
 
 footer { padding: 45px 70px; color: var(--muted); text-align: center; }
 
@@ -466,84 +510,117 @@ footer { padding: 45px 70px; color: var(--muted); text-align: center; }
 }
 
 @media (max-width: 768px) {
-  .navbar { padding: 20px 30px; }
+  .navbar { 
+    padding: 20px 30px; 
+    position: fixed;
+  }
 
   .logo { opacity: 1; transform: none; animation: none; }
   .nav-links { display: none; }
   #hamburger { display: flex; }
 
-  #mobileMenu.active { display: flex; }
+  /* FIX: MOBILE MENU POSITIONING */
+  .mobile-menu {
+    display: none;        /* Controlled by .active class */
+    flex-direction: column;
+    position: absolute;   /* Absolute within the FIXED navbar */
+    top: 100%;            /* Force it to start exactly below the bar */
+    left: 0;
+    width: 100%;
+    height: auto; 
+    background: rgba(11, 14, 19, 0.98); 
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px); 
+    padding: 20px 30px 40px; 
+    gap: 15px;
+    z-index: 999;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 0;
+    align-items: flex-start; /* Resets flex centering from navbar parent */
+  }
 
+  .mobile-menu.active { display: flex; }
+
+  .mobile-menu a {
+    font-size: 1.3rem;
+    color: var(--text);
+    text-decoration: none;
+    font-family: 'Archia', sans-serif;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    width: 100%; /* Ensures touch target is full width */
+  }
+
+  .mobile-menu a:last-child { border: none; }
+
+  /* HERO */
   .hero {
-    position: relative;
-    height: auto;
-    padding: 130px 30px 60px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 550px; 
+    padding: 100px 30px 40px; 
+    z-index: 1;
+    background: var(--bg);
   }
   .hero-content h1 { font-size: 2.4rem; }
   .hero-image { display: none; }
   .scroll-indicator { display: none !important; }
-  #scroll-wrapper { margin-top: 0; }
-
-  .section { padding: 40px 25px 10px; }
   
+  /* SCROLL OVERLAP */
+  #scroll-wrapper { 
+    margin-top: 550px; 
+    position: relative;
+    z-index: 10;
+    background: var(--bg);
+  }
+
+  /* FIX: THE GAP BETWEEN SECTIONS - KEEPING STICKY LOGIC BUT PUSHING DOWN */
+  .feature-grid { margin-bottom: 120px; } 
+  .features { padding: 40px 70px 0px 70px; } 
+  .section { padding: 40px 25px 10px; }
+
   .card {
     position: sticky;
     top: 90px; 
     margin-bottom: 45px;
   }
 
-  /* --- PROPERTY SLIDER MOBILE FIX --- */
-  #featured-property.section { padding: 60px 20px; }
+  /* --- PROPERTY SLIDER MOBILE --- */
+  #featured-property.section { padding: 100px 20px 60px; }
 
   .featured-card-wrapper { 
     display: grid !important; 
     grid-template-columns: 1fr 1fr; 
-    justify-items: center;
     gap: 15px;
-    width: 100%;
   }
 
   .featured-card {
     grid-column: span 2; 
     flex-direction: column;
     height: auto;
-    min-height: 0;
     width: 100%;
-    border-radius: 12px;
-    margin-bottom: 5px;
   }
   
   .featured-card img { width: 100%; height: 220px; }
   .featured-content { width: 100%; padding: 25px 20px; }
 
-  /* ARROWS: Side-by-side with extra spacing */
+  /* FIX: ARROW ALIGNMENT AND CLICKABILITY */
   .arrow { 
     position: relative !important; 
     top: auto !important;
     left: auto !important;
     right: auto !important;
     transform: none !important; 
-    display: flex !important;
     width: 60px !important;
     height: 60px !important;
-    margin: 0 !important;
+    margin: 10px 0;
   }
   
-  .left-arrow {
-    grid-column: 1;
-    justify-self: end; 
-    margin-right: 15px !important; /* Spacing between arrows */
-  }
-
-  .right-arrow {
-    grid-column: 2;
-    justify-self: start; 
-    margin-left: 15px !important; /* Spacing between arrows */
-  }
-
-  .arrow:hover { transform: none !important; }
-
-  .brands-track img { height: 45px; width: 75px; }
+  .left-arrow { grid-column: 1; justify-self: end; margin-right: 15px; }
+  .right-arrow { grid-column: 2; justify-self: start; margin-left: 15px; }
+  .brands-track img { height: 45px; width: auto; }
 }
 
 /* =========================
