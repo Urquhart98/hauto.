@@ -21,14 +21,14 @@ if (hamburger && mobileMenu) {
   });
 }
 
-// =========================
-// FEATURED PROPERTY CAROUSEL + SWOOP
-// =========================
+// ===========================
+// FEATURED PROPERTY CAROUSEL
+// ===========================
 const properties = [
   {
     img: 'images/property1.png',
     title: 'Luxury House Upgrade',
-    desc: 'For this stunning property, we delivered a full smart home transformation, installing intelligent lighting, advanced heating controls, and centralized panels.',
+    desc: 'For this stunning property, we delivered a full smart home transformation, installing intelligent lighting, advanced heating controls, and centralized control panels.',
     cost: '£5,500'
   },
   {
@@ -56,6 +56,7 @@ function showProperty(index) {
   // Update Content
   const img = featuredCard.querySelector('img');
   const title = featuredCard.querySelector('h3');
+  // Target description (middle) and cost (bottom) specifically
   const descPara = featuredCard.querySelector('p:not(.cost)');
   const costPara = featuredCard.querySelector('.cost');
 
@@ -63,9 +64,21 @@ function showProperty(index) {
     img.src = prop.img;
     img.alt = prop.title;
   }
-  if (title) title.textContent = prop.title;
-  if (descPara) descPara.textContent = prop.desc;
-  if (costPara) costPara.textContent = `Project Cost: ${prop.cost}`;
+  
+  // Title at the top (Bolded via CSS font-weight)
+  if (title) {
+    title.textContent = prop.title;
+  }
+  
+  // Paragraph in the middle
+  if (descPara) {
+    descPara.textContent = prop.desc;
+  }
+  
+  // Cost at the bottom (Bolded via CSS font-weight)
+  if (costPara) {
+    costPara.textContent = `Project Cost: ${prop.cost}`;
+  }
 
   // Re-trigger the Swoop animation
   featuredCard.classList.add('swoop-in');
